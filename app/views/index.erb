@@ -11,12 +11,14 @@
     <div>
       <button><a href="/sign_out">Sign Out</a></button>
       <h1>Post Tweet</h1>
-      <form method='post' action='/post_tweet'>
+      <form method='post' action='/post_tweet' class='post_tweet_form'>
         <input type='text' name='tweet'>
         <input type='submit' value='submit'>
       </form>
     </div>
     <% else %>
     <button><a href="/sign_in">Sign In with Twitter</a></button>
-    <% end %>
+    <% end %><br>
+    <div class='status'></div>
   </div>
+

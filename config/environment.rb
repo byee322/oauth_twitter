@@ -14,7 +14,8 @@ require 'pathname'
 require 'pg'
 require 'active_record'
 require 'logger'
-
+require 'sidekiq'
+require 'redis'
 require 'sinatra'
 require 'shotgun'
 

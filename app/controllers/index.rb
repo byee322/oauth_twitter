@@ -26,10 +26,15 @@ get '/auth' do
 end
 
 post '/post_tweet' do
-  client = Twitter::Client.new(
-  :oauth_token => current_user.oauth_token,
-  :oauth_token_secret => current_user.oauth_secret
-)
-client.update(params[:tweet])
-redirect '/'
+  session[:jid] = User.find(session[:user_id]).tweet(params[:tweet])
+end
+
+
+get '/status' do
+  puts 'am i here?'
+  if job_is_complete(session[:jid])
+    @confirmation = "It worked!" 
+  else
+    @confirmation = "Still working on it..."
+  end
 end

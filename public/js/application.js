@@ -1,7 +1,13 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
-
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $('.post_tweet_form').on('submit', function(e){
+    e.preventDefault();
+    $.post('/post_tweet', $(this).serialize()).done( function() {
+      var timerId = setInterval(function(){$.get('/status').done( function(response) {
+        $('.status').html(response);
+        console.log(response)
+        if(response === "It worked!"){
+          clearInterval(timerId);
+        }
+      })}, 1000);});
+  });
 });

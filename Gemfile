@@ -1,5 +1,5 @@
 source :rubygems
-ruby '2.0.0'
+ruby '1.9.3'
 # PostgreSQL driver
 gem 'pg'
 
@@ -18,7 +18,8 @@ gem 'shotgun'
 
 gem 'oauth'
 gem 'twitter'
-
+gem 'sidekiq'
+gem 'redis'
 group :test do
   gem 'faker'
   gem 'rspec'
