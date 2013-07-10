@@ -31,9 +31,14 @@ end
 
 
 get '/status' do
-  puts 'am i here?'
+  current_user = User.find(session[:user_id])
+
   if job_is_complete(session[:jid])
-    @confirmation = "It worked!" 
+    if current_user.tweets.last.error_message == nil
+      @confirmation = "It worked!"
+    else
+      @confirmation =  current_user.tweets.last.error_message
+    end
   else
     @confirmation = "Still working on it..."
   end

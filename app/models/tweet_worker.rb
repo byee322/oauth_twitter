@@ -10,7 +10,11 @@ class TweetWorker
       :oauth_token_secret => user.oauth_secret
       )
     # actually make API call
-        client.update(tweet.status)
+    begin
+      client.update(tweet.status)
+    rescue => e
+      tweet.update_attributes(:error_message => e.to_s)
+    end
     # Note: this does not have access to controller/view helpers
     # You'll have to re-initialize everything inside here
   end

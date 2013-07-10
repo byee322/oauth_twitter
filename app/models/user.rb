@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   def tweet(status)
     tweet = tweets.create!(:status => status)
-    TweetWorker.perform_in(5.seconds, tweet.id)
+    TweetWorker.perform_in(1.seconds, tweet.id)
   end
 
 end
